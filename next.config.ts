@@ -1,4 +1,12 @@
 import type { NextConfig } from "next";
+import { checkLmsUrlForBuild, parseLmsUrl } from "./lib/lms-url";
+
+// Public LMS address for the "Log in" / "Sign up" / "Courses" links (see .env.example).
+// Malformed values always fail; production builds also refuse localhost and plain http.
+checkLmsUrlForBuild(parseLmsUrl(process.env.NEXT_PUBLIC_LMS_URL), {
+  production: process.env.NODE_ENV === "production",
+  allowLocal: process.env.LMS_URL_ALLOW_LOCAL === "1",
+});
 
 // Static export: `npm run build` produces a plain `out/` folder
 // that can be uploaded to any hosting (cPanel, Nginx, S3...).

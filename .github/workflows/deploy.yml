@@ -32,6 +32,8 @@ jobs:
         env:
           # "/<repo-name>" for project pages, empty for a custom domain or <user>.github.io
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Public LMS address (repo Settings → Variables → LMS_URL). Unset = LMS not public yet.
+          NEXT_PUBLIC_LMS_URL: ${{ vars.LMS_URL }}
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

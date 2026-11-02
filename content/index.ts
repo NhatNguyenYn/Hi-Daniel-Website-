@@ -8,3 +8,6 @@ export const dictionaries = { vi, en };
 
 // URL of the landing page for each language.
 export const localePath: Record<Locale, string> = { vi: "/", en: "/en/" };
+
+// URL of the LMS product page for each language.
+export const lmsProductPath: Record<Locale, string> = { vi: "/lms/", en: "/en/lms/" };

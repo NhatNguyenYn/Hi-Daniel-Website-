@@ -68,10 +68,10 @@ export default function Landing({ locale }: { locale: Locale }) {
           <Stats t={t} locale={locale} />
           <Products t={t} locale={locale} />
           <Features t={t} />
-          <Courses t={t} />
+          <Courses t={t} locale={locale} />
           <Testimonials t={t} />
-          <Pricing t={t} />
-          <FinalCTA t={t} />
+          <Pricing t={t} locale={locale} />
+          <FinalCTA t={t} locale={locale} />
         </main>
         <Footer t={t} locale={locale} />
       </div>

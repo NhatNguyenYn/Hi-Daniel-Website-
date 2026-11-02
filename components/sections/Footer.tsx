@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "../Logo";
+import SmartLink from "../SmartLink";
 import { localePath, type Dictionary, type Locale } from "@/content";
 
 const socials = [
@@ -9,7 +10,8 @@ const socials = [
   { label: "LinkedIn", d: "M4 9h4v12H4zM6 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4 6h3.8v1.7c.6-1 1.9-2 3.9-2 4.1 0 4.3 2.7 4.3 6.1V21h-4v-5.4c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H10z" },
 ];
 
-export default function Footer({ t, locale }: { t: Dictionary; locale: Locale }) {
+/** `alternate`: the same page in the other language (defaults to the other landing page). */
+export default function Footer({ t, locale, alternate }: { t: Dictionary; locale: Locale; alternate?: string }) {
   return (
     <footer className="relative overflow-hidden bg-navy-950 pt-24 text-white">
       <div className="container-x">
@@ -38,10 +40,10 @@ export default function Footer({ t, locale }: { t: Dictionary; locale: Locale })
                 <h4 className="text-sm font-bold">{col.title}</h4>
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#" className="text-[14.5px] text-white/50 transition-colors hover:text-flame-400">
-                        {l}
-                      </a>
+                    <li key={l.label}>
+                      <SmartLink href={l.href ?? "#"} className="text-[14.5px] text-white/50 transition-colors hover:text-flame-400">
+                        {l.label}
+                      </SmartLink>
                     </li>
                   ))}
                 </ul>
@@ -58,7 +60,7 @@ export default function Footer({ t, locale }: { t: Dictionary; locale: Locale })
                 {l}
               </a>
             ))}
-            <Link href={localePath[locale === "vi" ? "en" : "vi"]} className="font-semibold text-white/70 hover:text-white">
+            <Link href={alternate ?? localePath[locale === "vi" ? "en" : "vi"]} className="font-semibold text-white/70 hover:text-white">
               {locale === "vi" ? "English" : "Tiếng Việt"}
             </Link>
           </div>

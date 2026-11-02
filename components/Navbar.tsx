@@ -4,11 +4,22 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Logo from "./Logo";
+import SmartLink from "./SmartLink";
 import { useLenis, useScrollTo } from "./SmoothScroll";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { resolveHref } from "@/lib/lms";
 import { localePath, type Dictionary, type Locale } from "@/content";
 
-export default function Navbar({ t, locale }: { t: Dictionary; locale: Locale }) {
+type NavbarProps = {
+  t: Dictionary;
+  locale: Locale;
+  /** false on sub-pages: "#section" links then lead back to the landing page. */
+  onLanding?: boolean;
+  /** This page's URL in each language (defaults to the landing pages). */
+  alternates?: Record<Locale, string>;
+};
+
+export default function Navbar({ t, locale, onLanding = true, alternates = localePath }: NavbarProps) {
   const ref = useRef<HTMLElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -67,6 +78,9 @@ export default function Navbar({ t, locale }: { t: Dictionary; locale: Locale })
   };
 
   const other: Locale = locale === "vi" ? "en" : "vi";
+  const hrefOf = (href: string) => (href.startsWith("#") && !onLanding ? localePath[locale] + href : resolveHref(href, locale));
+  const loginHref = resolveHref("lms:/login", locale);
+  const registerHref = resolveHref("lms:/register", locale);
 
   return (
     <>
@@ -86,32 +100,33 @@ export default function Navbar({ t, locale }: { t: Dictionary; locale: Locale })
               <Logo />
             </Link>
 
-            <ul className="hidden items-center gap-1 lg:flex">
+            {/* Desktop links from 1280px: below that the row (6 links + language + log in + sign up) wraps. */}
+            <ul className="hidden items-center gap-1 xl:flex">
               {t.nav.links.map((l) => (
                 <li key={l.href}>
-                  <Link
-                    href={l.href}
+                  <SmartLink
+                    href={hrefOf(l.href)}
                     onClick={(e) => onNav(e, l.href)}
-                    className="group relative rounded-full px-4 py-2 text-[14.5px] font-medium text-navy-900/75 transition-colors hover:text-navy-900"
+                    className="group relative rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-navy-900/75 transition-colors hover:text-navy-900"
                   >
                     {l.label}
                     <span className="absolute inset-x-4 bottom-1 h-[2px] origin-left scale-x-0 rounded-full bg-flame-500 transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
-                  </Link>
+                  </SmartLink>
                 </li>
               ))}
             </ul>
 
             <div className="flex items-center gap-2">
-              <LangSwitch locale={locale} />
-              <a href="#" className="hidden px-3 text-[14.5px] font-medium text-navy-900/80 hover:text-navy-900 md:inline">
+              <LangSwitch locale={locale} alternates={alternates} />
+              <SmartLink href={loginHref} className="hidden px-3 text-[14.5px] font-medium whitespace-nowrap text-navy-900/80 hover:text-navy-900 md:inline">
                 {t.nav.login}
-              </a>
-              <a href="#pricing" onClick={(e) => onNav(e, "#pricing")} className="btn-primary hidden !px-5 !py-2.5 !text-sm sm:inline-flex">
+              </SmartLink>
+              <SmartLink href={registerHref} className="btn-primary hidden !px-5 !py-2.5 !text-sm whitespace-nowrap sm:inline-flex">
                 {t.nav.cta}
-              </a>
+              </SmartLink>
               <button
                 onClick={() => setOpen((v) => !v)}
-                className="grid h-10 w-10 place-items-center rounded-full text-navy-900 ring-1 ring-navy-900/10 lg:hidden"
+                className="grid h-10 w-10 place-items-center rounded-full text-navy-900 ring-1 ring-navy-900/10 xl:hidden"
                 aria-label={t.nav.menu}
                 aria-expanded={open}
               >
@@ -123,28 +138,34 @@ export default function Navbar({ t, locale }: { t: Dictionary; locale: Locale })
         <div ref={progressRef} className="h-[2px] origin-left scale-x-0 bg-gradient-to-r from-flame-500 via-sun-brand to-flame-400" />
       </header>
 
+      {/* Scrolls on short phones; data-lenis-prevent keeps the wheel inside the menu. */}
       {open && (
-        <div className="glass fixed inset-0 z-40 pt-24 lg:hidden">
+        <div data-lenis-prevent className="glass fixed inset-0 z-40 overflow-y-auto pt-24 pb-10 xl:hidden">
           <ul className="container-x flex flex-col gap-2">
             {t.nav.links.map((l) => (
               <li key={l.href} data-mobile-link>
-                <Link
-                  href={l.href}
+                <SmartLink
+                  href={hrefOf(l.href)}
                   onClick={(e) => onNav(e, l.href)}
                   className="flex items-center justify-between border-b border-navy-900/10 py-4 text-3xl font-bold tracking-tight text-navy-900"
                 >
                   {l.label}
                   <ArrowRight className="text-flame-500" />
-                </Link>
+                </SmartLink>
               </li>
             ))}
             <li data-mobile-link className="pt-6">
-              <a href="#pricing" onClick={(e) => onNav(e, "#pricing")} className="btn-primary w-full">
+              <SmartLink href={registerHref} className="btn-primary w-full">
                 {t.nav.cta}
-              </a>
+              </SmartLink>
+            </li>
+            <li data-mobile-link className="pt-2">
+              <SmartLink href={loginHref} className="btn-ghost w-full">
+                {t.nav.login}
+              </SmartLink>
             </li>
             <li data-mobile-link className="pt-2 text-center">
-              <Link href={localePath[other]} className="text-sm font-semibold text-navy-900/60">
+              <Link href={alternates[other]} className="text-sm font-semibold text-navy-900/60">
                 {other === "en" ? "Switch to English" : "Chuyển sang Tiếng Việt"}
               </Link>
             </li>
@@ -155,7 +176,7 @@ export default function Navbar({ t, locale }: { t: Dictionary; locale: Locale })
   );
 }
 
-function LangSwitch({ locale }: { locale: Locale }) {
+function LangSwitch({ locale, alternates }: { locale: Locale; alternates: Record<Locale, string> }) {
   return (
     <div className="relative flex rounded-full bg-navy-900/5 p-1 text-xs font-bold ring-1 ring-navy-900/5">
       <span
@@ -166,7 +187,7 @@ function LangSwitch({ locale }: { locale: Locale }) {
       {(["vi", "en"] as const).map((l) => (
         <Link
           key={l}
-          href={localePath[l]}
+          href={alternates[l]}
           aria-current={l === locale ? "true" : undefined}
           className={`relative z-10 w-9 rounded-full py-1.5 text-center uppercase transition-colors ${
             l === locale ? "text-navy-900" : "text-navy-900/45 hover:text-navy-900/80"

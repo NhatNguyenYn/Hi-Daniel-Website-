@@ -12,12 +12,13 @@ const en: Dictionary = {
     links: [
       { label: "Products", href: "#products" },
       { label: "Features", href: "#features" },
-      { label: "Courses", href: "#courses" },
+      { label: "LMS", href: "/en/lms/" },
+      { label: "Courses", href: "lms:/courses" },
       { label: "Pricing", href: "#pricing" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: "/blog/" },
     ],
     login: "Log in",
-    cta: "Start free",
+    cta: "Sign up free",
     menu: "Menu",
   },
 
@@ -117,6 +118,7 @@ const en: Dictionary = {
       },
     ],
     learnMore: "Learn more",
+    comingSoon: "Coming soon",
   },
 
   features: {
@@ -200,6 +202,7 @@ const en: Dictionary = {
         monthly: "$0",
         yearly: "$0",
         cta: "Start free",
+        href: "lms:/register",
         features: ["Up to 50 learners", "3 courses", "Auto-grading", "Mobile apps"],
       },
       {
@@ -228,13 +231,95 @@ const en: Dictionary = {
     secondary: "Book a demo",
   },
 
+  lmsPage: {
+    meta: {
+      title: "Hi Daniel! LMS — Learning management system",
+      description:
+        "Create courses, manage lessons and learners, set assignments, grade them and follow learning progress with Hi Daniel! LMS.",
+    },
+    eyebrow: "Hi Daniel! LMS",
+    title: "Teach, learn and track progress in one place.",
+    subtitle:
+      "Hi Daniel! LMS helps teachers build courses, set and grade assignments, while learners follow a clear path and see how far they have come.",
+    register: "Sign up free",
+    login: "Log in",
+    courses: "Browse courses",
+    notLive: "Hi Daniel! LMS is not open to the public yet. Sign-in and sign-up buttons will appear here once it is ready.",
+    featuresTitle: "What the LMS does today",
+    features: [
+      {
+        icon: "course",
+        title: "Course management",
+        text: "Create courses with a description, cover image, level and a price or free access. Keep them as drafts, publish or archive them.",
+      },
+      {
+        icon: "lessons",
+        title: "Lesson management",
+        text: "Split courses into modules and lessons: video, reading, quiz and assignment. Reorder them and attach materials only enrolled learners can download.",
+      },
+      {
+        icon: "students",
+        title: "Learner management",
+        text: "Learners enrol in free courses themselves; administrators can grant or revoke access for each person.",
+      },
+      {
+        icon: "grading",
+        title: "Assignments and grading",
+        text: "Learners submit text or a file. Teachers grade and leave feedback; quizzes are graded instantly on the server.",
+      },
+      {
+        icon: "progress",
+        title: "Progress tracking",
+        text: "Every learner sees their progress per course, completed lessons and what to study next in “My learning”.",
+      },
+      {
+        icon: "teach",
+        title: "Teaching area",
+        text: "The courses a teacher runs, a gradebook per learner and a page for grading assignments.",
+      },
+      {
+        icon: "admin",
+        title: "Administration",
+        text: "Manage courses, curricula, learners and access, with a log of important changes.",
+      },
+    ],
+    rolesTitle: "A space for every role",
+    roles: [
+      { name: "Learners", text: "Sign up, verify their email, enrol, study, take quizzes, submit assignments and see their grades." },
+      { name: "Teachers", text: "Write assignments, grade, give feedback and follow the gradebook of the courses they run." },
+      { name: "Administrators", text: "Manage every course, lesson, learner and access right." },
+    ],
+    note: "Vietnamese interface, with English available.",
+    ctaTitle: "Get started with Hi Daniel! LMS",
+    ctaOpen: "Open the LMS",
+    backHome: "Back to home",
+  },
+
   footer: {
     tagline: "A fresh learning platform for a new generation.",
     columns: [
-      { title: "Product", links: ["LMS", "Live", "Studio", "Insights", "Mobile apps"] },
-      { title: "Solutions", links: ["Schools", "Academies", "Companies", "Independent teachers"] },
-      { title: "Resources", links: ["Blog", "Help center", "Webinars", "API docs"] },
-      { title: "Company", links: ["About", "Careers", "Contact", "Press"] },
+      {
+        title: "Product",
+        links: [
+          { label: "LMS", href: "/en/lms/" },
+          { label: "Live" },
+          { label: "Studio" },
+          { label: "Insights" },
+          { label: "Mobile apps" },
+        ],
+      },
+      {
+        title: "Solutions",
+        links: [{ label: "Schools" }, { label: "Academies" }, { label: "Companies" }, { label: "Independent teachers" }],
+      },
+      {
+        title: "Resources",
+        links: [{ label: "Blog", href: "/blog/" }, { label: "Help center" }, { label: "Webinars" }, { label: "API docs" }],
+      },
+      {
+        title: "Company",
+        links: [{ label: "About" }, { label: "Careers" }, { label: "Contact" }, { label: "Press" }],
+      },
     ],
     rights: "© 2026 Hi Daniel! All rights reserved.",
     legal: ["Terms", "Privacy", "Cookies"],
