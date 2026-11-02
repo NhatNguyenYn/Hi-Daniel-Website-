@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   Hi Daniel! brand tokens
+   navy  — trust, the speech bubble in the logo
+   flame — energy, the "!" and bookmark in the logo
+   sky / mint / sun / violet — playful accents for products & charts
+---------------------------------------------------------------- */
+@theme {
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-50: #eef2fb;
+  --color-navy-100: #d9e1f5;
+  --color-navy-200: #b3c3eb;
+  --color-navy-300: #7f97d6;
+  --color-navy-400: #4d6bbd;
+  --color-navy-500: #2b4ba3;
+  --color-navy-600: #1b3889;
+  --color-navy-700: #142d70;
+  --color-navy-800: #0e2460;
+  --color-navy-900: #0a1a47;
+  --color-navy-950: #060f2c;
+
+  --color-flame-50: #fff4ec;
+  --color-flame-100: #ffe3cf;
+  --color-flame-200: #ffc49c;
+  --color-flame-300: #ff9f63;
+  --color-flame-400: #ff8236;
+  --color-flame-500: #ff6a13;
+  --color-flame-600: #eb5200;
+  --color-flame-700: #c24100;
+
+  --color-sky-brand: #3d8bff;
+  --color-mint-brand: #1fc8a0;
+  --color-sun-brand: #ffbf2e;
+  --color-violet-brand: #8b5cf6;
+
+  --color-paper: #f6f7fb;
+  --color-ink: #0b1433;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-marquee-reverse: marquee var(--marquee-duration, 40s) linear infinite reverse;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.6s var(--ease-out-expo);
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+  }
+  ::selection {
+    background: var(--color-flame-500);
+    color: white;
+  }
+}
+
+/* Infinite CSS loops are paused while off-screen (see Landing.tsx). */
+.offscreen {
+  animation-play-state: paused !important;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hide animated elements until GSAP takes over (only when JS runs). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(48px);
+}
+.js [data-split] {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .js [data-split] {
+    visibility: visible;
+  }
+}
+
+/* Reusable utilities */
+  @utility container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+  @utility eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-flame-500;
+  }
+  @utility heading-xl {
+    @apply text-[clamp(2.5rem,7vw,5.75rem)] leading-[1.02] font-extrabold tracking-[-0.035em];
+  }
+  @utility heading-lg {
+    @apply text-[clamp(2rem,4.8vw,4rem)] leading-[1.06] font-extrabold tracking-[-0.03em];
+  }
+  @utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition-[translate,scale,box-shadow,background-color,color] duration-300 ease-out-expo active:scale-[0.97];
+  }
+  @utility btn-primary {
+    @apply btn bg-flame-500 text-white shadow-[0_10px_30px_-10px_rgb(255_106_19/0.8)] hover:bg-flame-600 hover:shadow-[0_16px_40px_-12px_rgb(255_106_19/0.9)] hover:-translate-y-0.5;
+  }
+  @utility btn-ghost {
+    @apply btn bg-white/90 text-navy-900 ring-1 ring-navy-900/10 hover:bg-white hover:ring-navy-900/20;
+  }
+  @utility btn-ghost-dark {
+    @apply btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/20;
+  }
+  @utility glass {
+    @apply bg-white/75 backdrop-blur-lg backdrop-saturate-150;
+  }
+  @utility text-gradient {
+    background: linear-gradient(100deg, var(--color-flame-500) 0%, var(--color-sun-brand) 45%, var(--color-flame-400) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  @utility grain {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+  }
+  @utility mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
