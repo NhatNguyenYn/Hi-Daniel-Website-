@@ -1,44 +1,14 @@
 @import "tailwindcss";
 
-/* ---------------------------------------------------------------
-   Hi Daniel! brand tokens
-   navy  — trust, the speech bubble in the logo
-   flame — energy, the "!" and bookmark in the logo
-   sky / mint / sun / violet — playful accents for products & charts
----------------------------------------------------------------- */
+/* Brand tokens (colours, type scale, radii, shadows, easing) are shared with every
+   Hi Daniel! project: edit design-system/tokens.json, then run `node design-system/build.mjs`. */
+@import "../design-system/hi-daniel.theme.css";
+@import "../design-system/hi-daniel.components.css";
+
+/* Website-only theme additions */
 @theme {
+  /* next/font serves Be Vietnam Pro locally */
   --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
-
-  --color-navy-50: #eef2fb;
-  --color-navy-100: #d9e1f5;
-  --color-navy-200: #b3c3eb;
-  --color-navy-300: #7f97d6;
-  --color-navy-400: #4d6bbd;
-  --color-navy-500: #2b4ba3;
-  --color-navy-600: #1b3889;
-  --color-navy-700: #142d70;
-  --color-navy-800: #0e2460;
-  --color-navy-900: #0a1a47;
-  --color-navy-950: #060f2c;
-
-  --color-flame-50: #fff4ec;
-  --color-flame-100: #ffe3cf;
-  --color-flame-200: #ffc49c;
-  --color-flame-300: #ff9f63;
-  --color-flame-400: #ff8236;
-  --color-flame-500: #ff6a13;
-  --color-flame-600: #eb5200;
-  --color-flame-700: #c24100;
-
-  --color-sky-brand: #3d8bff;
-  --color-mint-brand: #1fc8a0;
-  --color-sun-brand: #ffbf2e;
-  --color-violet-brand: #8b5cf6;
-
-  --color-paper: #f6f7fb;
-  --color-ink: #0b1433;
-
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-marquee-reverse: marquee var(--marquee-duration, 40s) linear infinite reverse;
@@ -112,40 +82,7 @@ html.lenis body {
   }
 }
 
-/* Reusable utilities */
-  @utility container-x {
-    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
-  }
-  @utility eyebrow {
-    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-flame-500;
-  }
-  @utility heading-xl {
-    @apply text-[clamp(2.5rem,7vw,5.75rem)] leading-[1.02] font-extrabold tracking-[-0.035em];
-  }
-  @utility heading-lg {
-    @apply text-[clamp(2rem,4.8vw,4rem)] leading-[1.06] font-extrabold tracking-[-0.03em];
-  }
-  @utility btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition-[translate,scale,box-shadow,background-color,color] duration-300 ease-out-expo active:scale-[0.97];
-  }
-  @utility btn-primary {
-    @apply btn bg-flame-500 text-white shadow-[0_10px_30px_-10px_rgb(255_106_19/0.8)] hover:bg-flame-600 hover:shadow-[0_16px_40px_-12px_rgb(255_106_19/0.9)] hover:-translate-y-0.5;
-  }
-  @utility btn-ghost {
-    @apply btn bg-white/90 text-navy-900 ring-1 ring-navy-900/10 hover:bg-white hover:ring-navy-900/20;
-  }
-  @utility btn-ghost-dark {
-    @apply btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/20;
-  }
-  @utility glass {
-    @apply bg-white/75 backdrop-blur-lg backdrop-saturate-150;
-  }
-  @utility text-gradient {
-    background: linear-gradient(100deg, var(--color-flame-500) 0%, var(--color-sun-brand) 45%, var(--color-flame-400) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
+/* Website-only decorative utilities (shared ones live in design-system/hi-daniel.components.css) */
   @utility grain {
     &::after {
       content: "";
