@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, LogIn } from "lucide-react";
 import Logo from "./Logo";
 import SmartLink from "./SmartLink";
 import { useLenis, useScrollTo } from "./SmoothScroll";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { resolveHref } from "@/lib/lms";
+import { danLoginHref } from "@/lib/dan-platform";
 import { localePath, type Dictionary, type Locale } from "@/content";
 
 type NavbarProps = {
@@ -81,6 +82,7 @@ export default function Navbar({ t, locale, onLanding = true, alternates = local
   const hrefOf = (href: string) => (href.startsWith("#") && !onLanding ? localePath[locale] + href : resolveHref(href, locale));
   const loginHref = resolveHref("lms:/login", locale);
   const registerHref = resolveHref("lms:/register", locale);
+  const danHref = danLoginHref;
 
   return (
     <>
@@ -124,6 +126,15 @@ export default function Navbar({ t, locale, onLanding = true, alternates = local
               <SmartLink href={registerHref} className="btn-primary hidden !px-5 !py-2.5 !text-sm whitespace-nowrap sm:inline-flex">
                 {t.nav.cta}
               </SmartLink>
+              {danHref && (
+                <SmartLink
+                  href={danHref}
+                  className="hidden items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold whitespace-nowrap text-navy-900 ring-1 ring-navy-900/20 transition-colors hover:bg-navy-900 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flame-500 xl:inline-flex"
+                >
+                  <LogIn size={16} aria-hidden />
+                  {t.nav.danLogin}
+                </SmartLink>
+              )}
               <button
                 onClick={() => setOpen((v) => !v)}
                 className="grid h-10 w-10 place-items-center rounded-full text-navy-900 ring-1 ring-navy-900/10 xl:hidden"
@@ -164,6 +175,14 @@ export default function Navbar({ t, locale, onLanding = true, alternates = local
                 {t.nav.login}
               </SmartLink>
             </li>
+            {danHref && (
+              <li data-mobile-link className="pt-2">
+                <SmartLink href={danHref} className="btn-ghost w-full">
+                  <LogIn size={18} aria-hidden />
+                  {t.nav.danLogin}
+                </SmartLink>
+              </li>
+            )}
             <li data-mobile-link className="pt-2 text-center">
               <Link href={alternates[other]} className="text-sm font-semibold text-navy-900/60">
                 {other === "en" ? "Switch to English" : "Chuyển sang Tiếng Việt"}

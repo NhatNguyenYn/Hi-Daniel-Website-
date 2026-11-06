@@ -18,8 +18,28 @@ const en: Dictionary = {
       { label: "Blog", href: "/blog/" },
     ],
     login: "Log in",
+    danLogin: "Log in to Dan Platform",
     cta: "Sign up free",
     menu: "Menu",
+  },
+
+  danPlatform: {
+    eyebrow: "Service · Training and engagement platform",
+    title: "Dan Platform",
+    summary:
+      "An all-in-one solution to organise, manage and run training, surveys, discussions and live engagement on a single unified platform.",
+    detail:
+      "Dan Platform is built for teachers, lecturers, businesses and training providers. It supports class management, tests, surveys, polls, discussions and interactive games during teaching. The goal is to simplify the work of training organisers while making learning convenient and lively.",
+    modules: [
+      { icon: "training", name: "Dan Training", text: "Manage programmes, courses, classes, learners and training content." },
+      { icon: "survey", name: "Dan Survey", text: "Design, publish and summarise survey results." },
+      { icon: "polling", name: "Dan Polling", text: "Run votes, gather opinions and answer quick questions in real time." },
+      { icon: "discussion", name: "Dan Discussion", text: "Run group discussions and consolidate opinions." },
+      { icon: "game", name: "Dan Gamification", text: "Create and run interactive games that boost learner participation." },
+    ],
+    visit: "Visit Dan Platform",
+    login: "Log in to the system",
+    notLive: "Dan Platform has no public address yet. The access buttons will appear here once the system is ready.",
   },
 
   hero: {

@@ -19,8 +19,29 @@ const vi = {
       { label: "Blog", href: "/blog/" },
     ],
     login: "Đăng nhập",
+    danLogin: "Đăng nhập Dan Platform",
     cta: "Đăng ký miễn phí",
     menu: "Menu",
+  },
+
+  // Dan Platform: hệ thống độc lập, chỉ giới thiệu chức năng; không công bố số liệu chưa kiểm chứng.
+  danPlatform: {
+    eyebrow: "Dịch vụ · Nền tảng quản lý đào tạo và tương tác",
+    title: "Dan Platform",
+    summary:
+      "Giải pháp All-in-One giúp tổ chức, quản lý và triển khai các hoạt động đào tạo, khảo sát, thảo luận và tương tác trực tiếp trên một nền tảng thống nhất.",
+    detail:
+      "Dan Platform là nền tảng dành cho giáo viên, giảng viên, doanh nghiệp và đơn vị đào tạo. Hệ thống hỗ trợ quản lý lớp học, tổ chức bài kiểm tra, khảo sát, biểu quyết, thảo luận và trò chơi tương tác trong quá trình giảng dạy. Mục tiêu là đơn giản hóa công việc của người tổ chức đào tạo, đồng thời tạo trải nghiệm học tập thuận tiện và sinh động.",
+    modules: [
+      { icon: "training", name: "Dan Training", text: "Quản lý chương trình, khóa đào tạo, lớp học, học viên và nội dung đào tạo." },
+      { icon: "survey", name: "Dan Survey", text: "Thiết kế, phát hành và tổng hợp kết quả khảo sát." },
+      { icon: "polling", name: "Dan Polling", text: "Tổ chức biểu quyết, lấy ý kiến và trả lời câu hỏi nhanh trong thời gian thực." },
+      { icon: "discussion", name: "Dan Discussion", text: "Tổ chức hoạt động thảo luận nhóm và tổng hợp ý kiến." },
+      { icon: "game", name: "Dan Gamification", text: "Tạo và tổ chức trò chơi tương tác nhằm tăng sự tham gia của học viên." },
+    ],
+    visit: "Truy cập Dan Platform",
+    login: "Đăng nhập hệ thống",
+    notLive: "Dan Platform chưa có địa chỉ truy cập công khai. Các nút truy cập sẽ xuất hiện tại đây khi hệ thống sẵn sàng.",
   },
 
   hero: {
