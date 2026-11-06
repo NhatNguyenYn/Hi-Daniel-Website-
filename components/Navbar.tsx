@@ -109,10 +109,10 @@ export default function Navbar({ t, locale, onLanding = true, alternates = local
                   <SmartLink
                     href={hrefOf(l.href)}
                     onClick={(e) => onNav(e, l.href)}
-                    className="group relative rounded-full px-4 py-2 text-[14.5px] font-medium whitespace-nowrap text-navy-900/75 transition-colors hover:text-navy-900"
+                    className="group relative rounded-full px-2.5 py-2 text-[14.5px] 2xl:px-4 font-medium whitespace-nowrap text-navy-900/75 transition-colors hover:text-navy-900"
                   >
                     {l.label}
-                    <span className="absolute inset-x-4 bottom-1 h-[2px] origin-left scale-x-0 rounded-full bg-flame-500 transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
+                    <span className="absolute inset-x-2.5 bottom-1 2xl:inset-x-4 h-[2px] origin-left scale-x-0 rounded-full bg-flame-500 transition-transform duration-500 ease-out-expo group-hover:scale-x-100" />
                   </SmartLink>
                 </li>
               ))}
@@ -129,10 +129,12 @@ export default function Navbar({ t, locale, onLanding = true, alternates = local
               {danHref && (
                 <SmartLink
                   href={danHref}
+                  aria-label={t.nav.danLogin}
                   className="hidden items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-semibold whitespace-nowrap text-navy-900 ring-1 ring-navy-900/20 transition-colors hover:bg-navy-900 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flame-500 xl:inline-flex"
                 >
                   <LogIn size={16} aria-hidden />
-                  {t.nav.danLogin}
+                  <span className="2xl:hidden" aria-hidden>Dan Platform</span>
+                  <span className="hidden 2xl:inline">{t.nav.danLogin}</span>
                 </SmartLink>
               )}
               <button
