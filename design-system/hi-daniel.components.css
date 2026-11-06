@@ -1,0 +1,67 @@
+/* Hi Daniel! shared UI utilities for Tailwind CSS v4.
+   Import after the theme:
+     @import "tailwindcss";
+     @import "./design-system/hi-daniel.theme.css";
+     @import "./design-system/hi-daniel.components.css";
+   Hand-written (not generated). Rules for when to use each one: DESIGN.md §8. */
+
+@utility container-x {
+  @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+}
+
+/* ---------- Type ---------- */
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 text-sm font-semibold tracking-[0.18em] text-flame-500 uppercase;
+}
+@utility heading-xl {
+  @apply text-display;
+}
+@utility heading-lg {
+  @apply text-headline;
+}
+@utility text-gradient {
+  background: var(--hd-gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Buttons ---------- */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition-[translate,scale,box-shadow,background-color,color] duration-300 ease-out-expo focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus active:scale-[0.97] disabled:pointer-events-none disabled:opacity-50;
+}
+/* Main call to action — at most one per view. */
+@utility btn-primary {
+  @apply btn bg-flame-500 text-white shadow-cta hover:-translate-y-0.5 hover:bg-flame-600 hover:shadow-cta-hover;
+}
+/* Solid navy — default action inside apps (forms, dialogs). Inverts on dark surfaces. */
+@utility btn-secondary {
+  @apply btn bg-secondary text-on-secondary hover:bg-secondary-hover;
+}
+/* Quiet action on light backgrounds. */
+@utility btn-ghost {
+  @apply btn bg-white/90 text-navy-900 ring-1 ring-navy-900/10 hover:bg-white hover:ring-navy-900/20;
+}
+/* Quiet action on navy or orange backgrounds. */
+@utility btn-ghost-dark {
+  @apply btn bg-white/10 text-white ring-1 ring-white/20 hover:bg-white/20;
+}
+
+/* ---------- Surfaces ---------- */
+@utility card {
+  @apply rounded-card bg-surface p-7 ring-1 ring-line;
+}
+/* Frosted bar — only for fixed headers/overlays, never on elements that move every frame. */
+@utility glass {
+  @apply bg-white/75 backdrop-blur-lg backdrop-saturate-150;
+}
+
+/* ---------- Forms ---------- */
+@utility field {
+  @apply h-11 w-full rounded-control bg-surface px-4 text-[15px] text-fg ring-1 ring-line-strong transition-[box-shadow] duration-200 outline-none placeholder:text-fg-subtle focus-visible:ring-2 focus-visible:ring-focus aria-invalid:ring-2 aria-invalid:ring-danger disabled:opacity-50;
+}
+
+/* ---------- Badges ---------- */
+@utility badge {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+}

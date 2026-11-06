@@ -5,10 +5,12 @@ import { ArrowRight, BookOpen, Star, Users } from "lucide-react";
 import { gsap, useGSAP, DESKTOP, MOTION_OK } from "@/lib/gsap";
 import SplitReveal from "../anim/SplitReveal";
 import { cover } from "../mockups";
-import type { Dictionary } from "@/content";
+import SmartLink from "../SmartLink";
+import { resolveHref } from "@/lib/lms";
+import type { Dictionary, Locale } from "@/content";
 
 /** Horizontal gallery: vertical scroll moves the cards sideways on desktop. */
-export default function Courses({ t }: { t: Dictionary }) {
+export default function Courses({ t, locale }: { t: Dictionary; locale: Locale }) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -65,10 +67,10 @@ export default function Courses({ t }: { t: Dictionary }) {
             </span>
             <SplitReveal className="heading-lg mt-5 max-w-[15ch]">{t.courses.title}</SplitReveal>
           </div>
-          <a data-reveal href="#pricing" className="btn-ghost-dark group shrink-0">
+          <SmartLink data-reveal href={resolveHref("lms:/courses", locale)} className="btn-ghost-dark group shrink-0">
             {t.courses.viewAll}
             <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-          </a>
+          </SmartLink>
         </div>
 
         <div className="mt-14 overflow-x-auto pb-4 [scrollbar-width:none] lg:overflow-visible lg:pb-0">

@@ -6,7 +6,8 @@ import { gsap, useGSAP, ScrollTrigger, DESKTOP, MOTION_OK } from "@/lib/gsap";
 import SplitReveal from "../anim/SplitReveal";
 import { useLenis } from "../SmoothScroll";
 import { ProductScreen } from "../mockups";
-import type { Dictionary, Locale } from "@/content";
+import SmartLink from "../SmartLink";
+import { lmsProductPath, type Dictionary, type Locale } from "@/content";
 
 const accents = {
   lms: { text: "text-flame-500", bg: "bg-flame-500", glow: "rgb(255 106 19 / .35)" },
@@ -71,8 +72,9 @@ export default function Products({ t, locale }: { t: Dictionary; locale: Locale 
     else window.scrollTo({ top: y, behavior: "smooth" });
   };
 
+  // overflow-x-clip: the glow layers (-inset-16) must not widen the page.
   return (
-    <section ref={root} id="products" className="relative bg-white">
+    <section ref={root} id="products" className="relative overflow-x-clip bg-white">
       <div className="container-x pt-28 text-center sm:pt-36">
         <span data-reveal className="eyebrow">
           {t.products.eyebrow}
@@ -126,10 +128,20 @@ export default function Products({ t, locale }: { t: Dictionary; locale: Locale 
                           </li>
                         ))}
                       </ul>
-                      <a href="#pricing" className={`inline-flex items-center gap-1.5 text-[15px] font-semibold ${a.text} group/link`}>
-                        {t.products.learnMore}
-                        <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
-                      </a>
+                      {/* Only the LMS exists today; the other modules are labelled, not linked. */}
+                      {p.key === "lms" ? (
+                        <SmartLink
+                          href={lmsProductPath[locale]}
+                          className={`inline-flex items-center gap-1.5 text-[15px] font-semibold ${a.text} group/link`}
+                        >
+                          {t.products.learnMore}
+                          <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-1" />
+                        </SmartLink>
+                      ) : (
+                        <span className="inline-flex rounded-full bg-navy-900/5 px-3 py-1 text-[13px] font-semibold text-navy-900/55">
+                          {t.products.comingSoon}
+                        </span>
+                      )}
                       <div data-reveal className="mt-8 lg:hidden">
                         <Screen p={p} t={t} locale={locale} />
                       </div>

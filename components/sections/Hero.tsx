@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { ArrowRight, Play, Sparkles, Trophy, CircleCheck, Bell } from "lucide-react";
 import { gsap, SplitText, useGSAP, MOTION_OK } from "@/lib/gsap";
 import { ProductScreen } from "../mockups";
+import SmartLink from "../SmartLink";
+import { resolveHref } from "@/lib/lms";
 import type { Dictionary, Locale } from "@/content";
 
 export default function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
@@ -116,10 +118,10 @@ export default function Hero({ t, locale }: { t: Dictionary; locale: Locale }) {
         </p>
 
         <div data-hero-fade className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href="#pricing" className="btn-primary group">
+          <SmartLink href={resolveHref("lms:/register", locale)} className="btn-primary group">
             {t.hero.primary}
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </SmartLink>
           <a href="#products" className="btn-ghost group">
             <span className="grid h-6 w-6 place-items-center rounded-full bg-navy-800 text-white transition-transform group-hover:scale-110">
               <Play size={10} className="fill-white" />

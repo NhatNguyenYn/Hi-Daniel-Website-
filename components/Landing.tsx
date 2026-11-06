@@ -9,6 +9,7 @@ import Hero from "./sections/Hero";
 import Manifesto from "./sections/Manifesto";
 import Stats from "./sections/Stats";
 import Products from "./sections/Products";
+import DanPlatform from "./sections/DanPlatform";
 import Features from "./sections/Features";
 import Courses from "./sections/Courses";
 import Testimonials from "./sections/Testimonials";
@@ -67,11 +68,12 @@ export default function Landing({ locale }: { locale: Locale }) {
           <Manifesto t={t} />
           <Stats t={t} locale={locale} />
           <Products t={t} locale={locale} />
+          <DanPlatform t={t} />
           <Features t={t} />
-          <Courses t={t} />
+          <Courses t={t} locale={locale} />
           <Testimonials t={t} />
-          <Pricing t={t} />
-          <FinalCTA t={t} />
+          <Pricing t={t} locale={locale} />
+          <FinalCTA t={t} locale={locale} />
         </main>
         <Footer t={t} locale={locale} />
       </div>

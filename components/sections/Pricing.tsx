@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import SplitReveal from "../anim/SplitReveal";
-import type { Dictionary } from "@/content";
+import SmartLink from "../SmartLink";
+import { resolveHref } from "@/lib/lms";
+import type { Dictionary, Locale } from "@/content";
 
-export default function Pricing({ t }: { t: Dictionary }) {
+export default function Pricing({ t, locale }: { t: Dictionary; locale: Locale }) {
   const [yearly, setYearly] = useState(true);
   const p = t.pricing;
 
@@ -74,9 +76,10 @@ export default function Pricing({ t }: { t: Dictionary }) {
                   </span>
                   {numeric && <span className={featured ? "text-white/50" : "text-navy-900/45"}>{p.perMonth}</span>}
                 </div>
-                <a href="#" className={`relative mt-8 w-full ${featured ? "btn-primary" : "btn-ghost !bg-navy-50 hover:!bg-navy-100"}`}>
+                {/* Plans without a real destination (trial, sales contact) keep "#" for now. */}
+                <SmartLink href={plan.href ? resolveHref(plan.href, locale) : "#"} className={`relative mt-8 w-full ${featured ? "btn-primary" : "btn-ghost !bg-navy-50 hover:!bg-navy-100"}`}>
                   {plan.cta}
-                </a>
+                </SmartLink>
                 <ul className="relative mt-8 flex flex-col gap-3.5">
                   {plan.features.map((f) => (
                     <li key={f} className={`flex items-start gap-3 text-[15px] ${featured ? "text-white/85" : "text-navy-900/75"}`}>

@@ -13,13 +13,35 @@ const vi = {
     links: [
       { label: "Sản phẩm", href: "#products" },
       { label: "Tính năng", href: "#features" },
-      { label: "Khóa học", href: "#courses" },
+      { label: "LMS", href: "/lms/" },
+      { label: "Khóa học", href: "lms:/courses" },
       { label: "Bảng giá", href: "#pricing" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: "/blog/" },
     ],
     login: "Đăng nhập",
-    cta: "Dùng thử miễn phí",
+    danLogin: "Đăng nhập Dan Platform",
+    cta: "Đăng ký miễn phí",
     menu: "Menu",
+  },
+
+  // Dan Platform: hệ thống độc lập, chỉ giới thiệu chức năng; không công bố số liệu chưa kiểm chứng.
+  danPlatform: {
+    eyebrow: "Dịch vụ · Nền tảng quản lý đào tạo và tương tác",
+    title: "Dan Platform",
+    summary:
+      "Giải pháp All-in-One giúp tổ chức, quản lý và triển khai các hoạt động đào tạo, khảo sát, thảo luận và tương tác trực tiếp trên một nền tảng thống nhất.",
+    detail:
+      "Dan Platform là nền tảng dành cho giáo viên, giảng viên, doanh nghiệp và đơn vị đào tạo. Hệ thống hỗ trợ quản lý lớp học, tổ chức bài kiểm tra, khảo sát, biểu quyết, thảo luận và trò chơi tương tác trong quá trình giảng dạy. Mục tiêu là đơn giản hóa công việc của người tổ chức đào tạo, đồng thời tạo trải nghiệm học tập thuận tiện và sinh động.",
+    modules: [
+      { icon: "training", name: "Dan Training", text: "Quản lý chương trình, khóa đào tạo, lớp học, học viên và nội dung đào tạo." },
+      { icon: "survey", name: "Dan Survey", text: "Thiết kế, phát hành và tổng hợp kết quả khảo sát." },
+      { icon: "polling", name: "Dan Polling", text: "Tổ chức biểu quyết, lấy ý kiến và trả lời câu hỏi nhanh trong thời gian thực." },
+      { icon: "discussion", name: "Dan Discussion", text: "Tổ chức hoạt động thảo luận nhóm và tổng hợp ý kiến." },
+      { icon: "game", name: "Dan Gamification", text: "Tạo và tổ chức trò chơi tương tác nhằm tăng sự tham gia của học viên." },
+    ],
+    visit: "Truy cập Dan Platform",
+    login: "Đăng nhập hệ thống",
+    notLive: "Dan Platform chưa có địa chỉ truy cập công khai. Các nút truy cập sẽ xuất hiện tại đây khi hệ thống sẵn sàng.",
   },
 
   hero: {
@@ -118,6 +140,7 @@ const vi = {
       },
     ],
     learnMore: "Tìm hiểu thêm",
+    comingSoon: "Sắp ra mắt",
   },
 
   features: {
@@ -201,6 +224,7 @@ const vi = {
         monthly: "0đ",
         yearly: "0đ",
         cta: "Bắt đầu miễn phí",
+        href: "lms:/register",
         features: ["Tối đa 50 học viên", "3 khóa học", "Chấm bài tự động", "Ứng dụng di động"],
       },
       {
@@ -229,13 +253,97 @@ const vi = {
     secondary: "Đặt lịch demo",
   },
 
+  // Trang giới thiệu Hi Daniel! LMS (/lms/). Chỉ mô tả chức năng đã có và đã được kiểm thử.
+  lmsPage: {
+    meta: {
+      title: "Hi Daniel! LMS — Hệ thống quản lý học tập",
+      description:
+        "Tạo khóa học, quản lý bài học và học viên, giao bài tập, chấm điểm và theo dõi tiến độ học tập trên Hi Daniel! LMS.",
+    },
+    eyebrow: "Hi Daniel! LMS",
+    title: "Dạy, học và theo dõi tiến độ ở cùng một nơi.",
+    subtitle:
+      "Hi Daniel! LMS giúp giáo viên xây dựng khóa học, giao bài và chấm điểm, còn học viên học theo lộ trình và thấy rõ mình đã đi được bao xa.",
+    register: "Đăng ký miễn phí",
+    login: "Đăng nhập",
+    courses: "Xem khóa học",
+    notLive: "Hi Daniel! LMS chưa mở công khai. Các nút đăng nhập và đăng ký sẽ xuất hiện tại đây khi hệ thống sẵn sàng.",
+    featuresTitle: "Những gì LMS làm được hôm nay",
+    features: [
+      {
+        icon: "course",
+        title: "Quản lý khóa học",
+        text: "Tạo khóa học với mô tả, ảnh bìa, cấp độ và học phí hoặc miễn phí. Lưu nháp, xuất bản hoặc lưu trữ khi cần.",
+      },
+      {
+        icon: "lessons",
+        title: "Quản lý bài học",
+        text: "Chia khóa học thành chương và bài: video, bài đọc, bài trắc nghiệm, bài tập. Sắp xếp thứ tự và đính kèm tài liệu chỉ học viên được tải.",
+      },
+      {
+        icon: "students",
+        title: "Quản lý học viên",
+        text: "Học viên tự ghi danh khóa miễn phí; quản trị viên có thể cấp hoặc thu hồi quyền học cho từng người.",
+      },
+      {
+        icon: "grading",
+        title: "Bài tập và chấm điểm",
+        text: "Học viên nộp bài bằng văn bản hoặc tệp. Giáo viên chấm điểm và nhận xét; bài trắc nghiệm được chấm ngay trên máy chủ.",
+      },
+      {
+        icon: "progress",
+        title: "Theo dõi quá trình học",
+        text: "Mỗi học viên thấy tiến độ từng khóa, bài đã hoàn thành và bài nên học tiếp trong mục “Khóa học của tôi”.",
+      },
+      {
+        icon: "teach",
+        title: "Khu vực giáo viên",
+        text: "Danh sách khóa học phụ trách, bảng điểm theo từng học viên và trang chấm bài tập.",
+      },
+      {
+        icon: "admin",
+        title: "Khu vực quản trị",
+        text: "Quản lý khóa học, chương trình học, học viên và quyền học, kèm nhật ký các thay đổi quan trọng.",
+      },
+    ],
+    rolesTitle: "Mỗi vai trò một không gian riêng",
+    roles: [
+      { name: "Học viên", text: "Đăng ký, xác minh email, ghi danh, học bài, làm trắc nghiệm, nộp bài tập và xem điểm." },
+      { name: "Giáo viên", text: "Soạn bài tập, chấm điểm, nhận xét và theo dõi bảng điểm của khóa học mình phụ trách." },
+      { name: "Quản trị viên", text: "Quản lý toàn bộ khóa học, bài học, học viên và quyền truy cập." },
+    ],
+    note: "Giao diện tiếng Việt, có thể chuyển sang tiếng Anh.",
+    ctaTitle: "Bắt đầu với Hi Daniel! LMS",
+    ctaOpen: "Trải nghiệm LMS",
+    backHome: "Về trang chủ",
+  },
+
   footer: {
     tagline: "Nền tảng học tập trẻ trung cho thế hệ mới.",
     columns: [
-      { title: "Sản phẩm", links: ["LMS", "Live", "Studio", "Insights", "Ứng dụng di động"] },
-      { title: "Giải pháp", links: ["Trường học", "Trung tâm", "Doanh nghiệp", "Giáo viên tự do"] },
-      { title: "Tài nguyên", links: ["Blog", "Trung tâm trợ giúp", "Webinar", "Tài liệu API"] },
-      { title: "Công ty", links: ["Về chúng tôi", "Tuyển dụng", "Liên hệ", "Báo chí"] },
+      // Links without `href` have no destination yet and keep pointing to "#".
+      {
+        title: "Sản phẩm",
+        links: [
+          { label: "LMS", href: "/lms/" },
+          { label: "Live" },
+          { label: "Studio" },
+          { label: "Insights" },
+          { label: "Ứng dụng di động" },
+        ],
+      },
+      {
+        title: "Giải pháp",
+        links: [{ label: "Trường học" }, { label: "Trung tâm" }, { label: "Doanh nghiệp" }, { label: "Giáo viên tự do" }],
+      },
+      {
+        title: "Tài nguyên",
+        links: [{ label: "Blog", href: "/blog/" }, { label: "Trung tâm trợ giúp" }, { label: "Webinar" }, { label: "Tài liệu API" }],
+      },
+      {
+        title: "Công ty",
+        links: [{ label: "Về chúng tôi" }, { label: "Tuyển dụng" }, { label: "Liên hệ" }, { label: "Báo chí" }],
+      },
     ],
     rights: "© 2026 Hi Daniel! Bảo lưu mọi quyền.",
     legal: ["Điều khoản", "Bảo mật", "Cookie"],

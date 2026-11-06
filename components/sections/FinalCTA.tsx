@@ -5,10 +5,12 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { gsap, useGSAP, MOTION_OK } from "@/lib/gsap";
 import SplitReveal from "../anim/SplitReveal";
 import { LogoMark } from "../Logo";
-import type { Dictionary } from "@/content";
+import SmartLink from "../SmartLink";
+import { resolveHref } from "@/lib/lms";
+import type { Dictionary, Locale } from "@/content";
 
 /** The card grows from an inset rounded panel to full-bleed as you scroll in. */
-export default function FinalCTA({ t }: { t: Dictionary }) {
+export default function FinalCTA({ t, locale }: { t: Dictionary; locale: Locale }) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -58,10 +60,10 @@ export default function FinalCTA({ t }: { t: Dictionary }) {
             {t.cta.subtitle}
           </p>
           <div data-reveal className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a href="#" className="btn group bg-navy-900 text-white shadow-[0_15px_40px_-12px_rgb(10_26_71/.7)] hover:-translate-y-0.5 hover:bg-navy-800">
+            <SmartLink href={resolveHref("lms:/register", locale)} className="btn group bg-navy-900 text-white shadow-[0_15px_40px_-12px_rgb(10_26_71/.7)] hover:-translate-y-0.5 hover:bg-navy-800">
               {t.cta.primary}
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-            </a>
+            </SmartLink>
             <a href="#" className="btn-ghost-dark !bg-white/15 hover:!bg-white/25">
               <Calendar size={17} /> {t.cta.secondary}
             </a>
