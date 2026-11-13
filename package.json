@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node error-404/build.mjs",
     "start": "npx serve out"
   },
   "dependencies": {

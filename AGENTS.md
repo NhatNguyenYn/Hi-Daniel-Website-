@@ -12,3 +12,4 @@ Before creating or changing any UI, read and follow `design-system/DESIGN.md` â€
 - Next.js 15 static export (`output: "export"`), Tailwind CSS v4, GSAP (ScrollTrigger, SplitText), Lenis.
 - All page copy lives in `content/vi.ts` (default) and `content/en.ts`; both must keep the same shape.
 - `npm run dev` to develop; `npm run build` writes `out/`. GitHub Pages deploys on push to `main` with `NEXT_PUBLIC_BASE_PATH=/<repo>`.
+- Custom 404 page: `error-404/` (static HTML/CSS/JS + minigame). `npm run build` runs `error-404/build.mjs` afterwards, which inlines it into `out/404.html`, replacing Next.js' default 404.
