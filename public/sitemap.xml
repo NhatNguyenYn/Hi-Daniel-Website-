@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap.xml — hidaniel.io.vn (landing page)
+     Place in: Hi-Daniel-Website- repo, public/sitemap.xml
+     Do NOT put this in the Dan-platform repo.
+     Only public landing URLs belong here. Dan Platform pages
+     (/dan-platform, /dan-platform/login, /student, ...) require a
+     login, so they are deliberately NOT listed.
+     Routes verified live on https://www.hidaniel.io.vn/ on
+     2026-11-06 ~21:15 (Asia/Saigon) via curl: / , /blog/, /lms/,
+     /en/ and /en/lms/ all return 200. Anchor sections (#products,
+     #features, #pricing) are not separate pages and are not listed.
+     /blog/ links to no individual posts; /en/blog/ returns 404,
+     so no article URLs are listed. /courses/ and /pricing/ 404. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://hidaniel.io.vn/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://hidaniel.io.vn/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidaniel.io.vn/lms/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hidaniel.io.vn/en/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://hidaniel.io.vn/en/lms/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>

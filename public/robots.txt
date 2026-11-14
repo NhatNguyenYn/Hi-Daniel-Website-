@@ -1,0 +1,13 @@
+# robots.txt — hidaniel.io.vn (landing page)
+# Place in: Hi-Daniel-Website- repo, public/robots.txt
+# (Next.js static export serves public/ at the site root.)
+# Do NOT put this in the Dan-platform repo: there it would only serve at
+# /dan-platform/robots.txt, which Google never reads for hidaniel.io.vn.
+# Dan Platform lives under /dan-platform/ and requires login, so keep it
+# out of the index; the landing page at / stays crawlable.
+
+User-agent: *
+Allow: /
+Disallow: /dan-platform/
+
+Sitemap: https://hidaniel.io.vn/sitemap.xml
